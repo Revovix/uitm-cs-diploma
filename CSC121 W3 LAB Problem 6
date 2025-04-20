@@ -12,20 +12,21 @@ int main() {
     double payment = 0.0;
 
     // Input
+    while (true) {
     cout << "Enter destination code (KL or KB): ";
     cin >> destinationCode;
 
     // Convert to uppercase immediately
-    for (char &c : destinationCode) {
-        c = toupper(c);
+        for (std::string::size_type i = 0; i < destinationCode.size(); ++i) {
+            destinationCode[i] = toupper(destinationCode[i]);
     }
 
-    // Validate destination code early
-    if (destinationCode != "KL" && destinationCode != "KB") {
+    if (destinationCode == "KL" || destinationCode == "KB") {
+        break; // valid input, break the loop
+    } else {
         cout << "Invalid destination code. Must be KL or KB." << endl;
-        return 1;
     }
-
+}
     cout << "Enter quantity: ";
     cin >> quantity;
 
