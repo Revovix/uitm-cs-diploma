@@ -16,9 +16,9 @@ int main() {
     cin >> destinationCode;
 
     // Convert to uppercase immediately
-    for (char &c : destinationCode) {
-        c = toupper(c);
-    }
+    for (std::string::size_type i = 0; i < destinationCode.size(); ++i) {
+    destinationCode[i] = toupper(destinationCode[i]);
+}
 
     // Validate destination code early
     if (destinationCode != "KL" && destinationCode != "KB") {
