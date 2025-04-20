@@ -1,0 +1,50 @@
+#include <iostream>
+#include <string>
+#include <iomanip> // for setprecision
+
+using namespace std;
+
+int main() {
+    string destinationCode;
+    int quantity;
+    const double KLPrice = 56.00;  // made const since these are constants
+    const double KBPrice = 64.35;
+    double payment = 0.0;
+
+    // Input
+    cout << "Enter destination code (KL or KB): ";
+    cin >> destinationCode;
+
+    // Convert to uppercase immediately
+    for (char &c : destinationCode) {
+        c = toupper(c);
+    }
+
+    // Validate destination code early
+    if (destinationCode != "KL" && destinationCode != "KB") {
+        cout << "Invalid destination code. Must be KL or KB." << endl;
+        return 1;
+    }
+
+    cout << "Enter quantity: ";
+    cin >> quantity;
+
+    // Check if quantity input failed (e.g., user entered text)
+    if (cin.fail() || quantity <= 0) {
+        cout << "Invalid quantity. Must be a positive integer." << endl;
+        return 1;
+    }
+
+    // Process
+    if (destinationCode == "KL") {
+        payment = quantity * KLPrice;
+    } else { // we already validated it's either KL or KB
+        payment = quantity * KBPrice;
+    }
+
+    // Output
+    cout << fixed << setprecision(2); // 2 decimal places
+    cout << "Payment: RM " << payment << endl;
+
+    return 0;
+}
